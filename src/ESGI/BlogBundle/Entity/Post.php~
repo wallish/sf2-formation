@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Post
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity( repositoryClass="ESGI\BlogBundle\Repository\PostRepository")
  */
 class Post
 {
@@ -18,6 +18,16 @@ class Post
     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
     */
     protected $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     */
+    protected $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
 
     /**
@@ -49,7 +59,6 @@ class Post
      * @ORM\Column(name="isPublished", type="boolean")
      */
     private $isPublished;
-
 
 
     /**
@@ -210,5 +219,74 @@ class Post
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Post
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     * @return Post
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime 
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Set contentChanged
+     *
+     * @param \DateTime $contentChanged
+     * @return Post
+     */
+    public function setContentChanged($contentChanged)
+    {
+        $this->contentChanged = $contentChanged;
+
+        return $this;
+    }
+
+    /**
+     * Get contentChanged
+     *
+     * @return \DateTime 
+     */
+    public function getContentChanged()
+    {
+        return $this->contentChanged;
     }
 }

@@ -19,6 +19,16 @@ class Post
     */
     protected $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     */
+    protected $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
+
 
     /**
      * @var integer
@@ -278,5 +288,38 @@ class Post
     public function getContentChanged()
     {
         return $this->contentChanged;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \ESGI\BlogBundle\Entity\Comment $comments
+     * @return Post
+     */
+    public function addComment(\ESGI\BlogBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \ESGI\BlogBundle\Entity\Comment $comments
+     */
+    public function removeComment(\ESGI\BlogBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

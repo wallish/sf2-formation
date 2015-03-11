@@ -21,3 +21,7 @@ post_add:
 post_delete:
     pattern: /post/delete/{id}
     defaults: { _controller: "ESGIBlogBundle:Post:delete" }
+
+comment_add:
+    pattern: /comment/add
+    defaults: { _controller: "ESGIBlogBundle:Comment:add" }
