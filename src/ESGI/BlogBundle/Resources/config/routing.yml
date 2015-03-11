@@ -1,0 +1,7 @@
+post_index:
+    pattern: /post
+    defaults: { _controller: "ESGIBlogBundle:Post:index" }
+
+post_list:
+    pattern: /post/list
+    defaults: { _controller: "ESGIBlogBundle:Post:list" }
