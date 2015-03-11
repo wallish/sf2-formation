@@ -13,6 +13,7 @@ class ProposePostType extends AbstractType
 		$builder
 			->add('title')
 			->add('body')
+			->add('category','entity', array('class' => 'ESGIBlogBundle:Category','property' => 'name'))
 		;
 	}
 
