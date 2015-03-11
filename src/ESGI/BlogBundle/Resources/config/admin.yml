@@ -1,0 +1,21 @@
+services:
+    sonata.admin.post:
+        class: ESGI\BlogBundle\Admin\PostAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Post" }
+        arguments:
+            - ~
+            - ESGI\BlogBundle\Entity\Post
+            - ~
+        calls:
+            - [ setTranslationDomain, [ESGIBlogBundle]]
+    sonata.admin.category:
+        class: ESGI\BlogBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Category" }
+        arguments:
+            - ~
+            - ESGI\BlogBundle\Entity\Category
+            - ~
+        calls:
+            - [ setTranslationDomain, [ESGIBlogBundle]]

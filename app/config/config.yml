@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: @ESGIBlogBundle/Resources/config/admin.yml }
 
 framework:
     #esi:             ~
@@ -43,6 +44,7 @@ assetic:
         #yui_css:
         #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -53,6 +55,8 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -78,3 +82,15 @@ stof_doctrine_extensions:
         default:
             sluggable: true
             timestampable: true # not needed: listeners are not enabled by default
+            
+sonata_admin:
+    title:      ESGI Blog Bundle
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.user.block.menu:    # used to display the menu in profile pages
+        sonata.user.block.account: # used to display menu option (login option)
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
