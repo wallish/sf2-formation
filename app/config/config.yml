@@ -82,7 +82,7 @@ stof_doctrine_extensions:
         default:
             sluggable: true
             timestampable: true # not needed: listeners are not enabled by default
-            
+
 sonata_admin:
     title:      ESGI Blog Bundle
 
