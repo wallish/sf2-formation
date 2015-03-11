@@ -1,0 +1,32 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <h1>Ajouter un nouveau post</h1>
+    {% for label, flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+            <p>
+                {{ flash }}
+            </p>
+        {% endfor %}
+    {% endfor %}
+    <div>
+        <form action="{{ path('post_add') }}" method="post" {{ form_enctype(form) }}>
+            {{ form_errors(form) }}
+
+            <div>Titre</div>
+            <div>{{ form_widget(form.title) }}</div>
+            <div>Corps du post</div>
+            <div>{{ form_widget(form.body) }}</div>
+            <div>Corps du post</div>
+            <div>{{ form_widget(form.category) }}</div>
+            <div>Publier directement</div>
+            <div>{{ form_widget(form.isPublished) }}</div>
+            
+            <p>
+                <input type="submit" value="Proposer" />
+            </p> 
+            {{ form_rest(form) }}
+        </form>
+    </div>
+{#    {{ form_widget(form) }}#}
+{% endblock %}

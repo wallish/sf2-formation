@@ -51,7 +51,6 @@ class Post
     private $isPublished;
 
 
-
     /**
     *@var string $slug
     *

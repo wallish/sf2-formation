@@ -13,6 +13,7 @@ use Doctrine\ORM\QueryBuilder;
 
 use ESGI\BlogBundle\Entity\Post as Post;
 use ESGI\BlogBundle\Form\ProposePostType;
+use ESGI\BlogBundle\Form\AddPostType;
 
 class PostController extends Controller
 {
@@ -64,5 +65,49 @@ class PostController extends Controller
         	'post' => $post,
         ];
 	}
+
+	// only admin can do this
+	public function deleteAction(Request $request)
+    {
+    	if($request->getMethod() == Request::METHOD_POST){
+
+	        $em = $this->getDoctrine()->getManager();
+	        $article = $em->getRepository('ESGIBlogBundle:Post')->findBy(array('id' => $id));
+	        $em->remove($article[0]);
+	        $em->flush();
+
+	        $this->get('session')->getFlashBag()->add('success', 'Votre article a été correctement supprimé!');
+	    
+	        return $this->redirect($this->generateUrl('esgi_propose')); 
+    	}
+
+        return $this->render('ESGIBlogBundle:Post:delete.html.twig');
+    }
+
+    public function addAction(Request $request)
+    {
+        $post = new Post(); 
+        $form = $this->createForm(new AddPostType(), $post); 
+        
+        if($request->getMethod() == Request::METHOD_POST){
+            $form->handleRequest($request);
+            
+            if ($form->isValid()) {
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($post);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('success', 'Votre proposition a été correctement enregistrée!');
+
+                return $this->redirect($this->generateUrl('post_add')); 
+            }
+        }
+        
+        return $this->render('ESGIBlogBundle:Post:add.html.twig',array(
+                'form' => $form->createView(), 
+            ));
+        
+        
+    }
 
 }
