@@ -5,3 +5,7 @@ post_index:
 post_list:
     pattern: /post/list
     defaults: { _controller: "ESGIBlogBundle:Post:list" }
+
+post_show:
+    pattern: /post/show/{id}
+    defaults: { _controller: "ESGIBlogBundle:Post:show" }

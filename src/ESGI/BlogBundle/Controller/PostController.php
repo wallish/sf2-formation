@@ -52,5 +52,17 @@ class PostController extends Controller
 	    ];
 	}
 
+    /**
+     * @Template()
+     */
+	public function showAction($id)
+	{
+		$em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('ESGIBlogBundle:Post')->findBy(array("id" => $id));
+
+        return [
+        	'post' => $post,
+        ];
+	}
 
 }
