@@ -5,7 +5,7 @@ use Doctrine\ORM\EntityRepository;
 
 class PostRepository extends EntityRepository
 {
-	public function findByPublished()
+	public function findPublished()
 	{
 		 return $this->createQueryBuilder('p')
 		 	->andWhere('p.isPublished = :published')

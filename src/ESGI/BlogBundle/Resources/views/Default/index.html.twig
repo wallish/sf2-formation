@@ -1,1 +1,10 @@
-{{ dump(posts) }}
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    {% for post in posts %}
+        <article style="color:{% if post.isPublished %}green{% else %}red{% endif %}">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.body }}</p>
+        </article>
+    {% endfor %}
+{% endblock %}

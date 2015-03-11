@@ -14,31 +14,35 @@ use ESGI\BlogBundle\Form\ProposePostType;
 class ProposeController extends Controller
 {
     /**
-     * @Route("/propose")
-     * @Template()
+     * @Route("/propose", name="esgi_propose")
      */
-	public function proposeAction(Request $request)
-	{
-		$post = new Post();
-		$form = $this->createForm(new ProposePostType(),$post);
+    public function proposeAction(Request $request)
+    {
+        $post = new Post(); 
+        $form = $this->createForm(new ProposePostType(), $post); 
+        
+        if($request->getMethod() == Request::METHOD_POST){
+            
+            $form->handleRequest($request);
+            
+            if ($form->isValid()) {
+                // save the proposition
+                $em = $this->getDoctrine()->getManager();
+                $post->setIsPublished(false);
+                $em->persist($post);
+                $em->flush();
+                            // add a flash message
+                $this->get('session')->getFlashBag()->add('success', 'Votre proposition a été correctement enregistrée!');
+                return $this->redirect($this->generateUrl('esgi_propose')); 
 
-		if ( $request -> getMethod() == 'POST' ) {
-			$form ->handleRequest($request);
-			if ($form -> isValid()) {
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($post);
-				$em->flush();
-
-				// add a flash message 
-				$this->get('session')->getFlashBag()->add('success', 'Your proposition has been saved!');
-				
-				return $this->redirect($this->generateUrl('blog_propose'));
-			}
-		}
-
-		return array(
-			'form' => $form->createView(),
-		);
-	}
+            }
+        }
+        
+        return $this->render('ESGIBlogBundle:Propose:propose.html.twig',array(
+                'form' => $form->createView(), 
+                ));
+        
+        
+    }   
 
 }

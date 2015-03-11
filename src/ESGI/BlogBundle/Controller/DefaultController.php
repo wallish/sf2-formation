@@ -63,14 +63,14 @@ class DefaultController extends Controller
 
     /**
      * @Route("/")
-     * @Template()
      */
     public function indexAction()
     {
-        $posts = $this->get('doctrine.orm.entity_manager')->getRepository('ESGIBlogBundle:Post')->findAll();
-
-        return [
-            'posts' => $posts
-        ];
+        $em = $this->getDoctrine()->getManager();
+        $publishedPosts = $em->getRepository('ESGIBlogBundle:Post')->findPublished();
+        $posts = $em->getRepository('ESGIBlogBundle:Post')->findAll();
+//        var_dump($publishedPosts);
+       
+        return $this->render("ESGIBlogBundle:Default:index.html.twig", array("posts"=>$posts));
     }
 }
