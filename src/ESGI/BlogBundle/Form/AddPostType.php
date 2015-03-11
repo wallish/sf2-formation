@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProposePostType extends AbstractType
+class AddPostType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
@@ -14,12 +14,16 @@ class ProposePostType extends AbstractType
 			->add('title')
 			->add('body')
 			->add('category','entity', array('class' => 'ESGIBlogBundle:Category','property' => 'name'))
+			->add('isPublished', 'checkbox', array(
+				'label' => 'A publier',
+			    'required'  => false,
+			));
 		;
 	}
 
 	public function getName()
 	{
-		return 'proposeposttype';
+		return 'addposttype';
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)

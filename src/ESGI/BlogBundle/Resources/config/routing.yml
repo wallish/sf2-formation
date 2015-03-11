@@ -1,0 +1,23 @@
+post_index:
+    pattern: /post
+    defaults: { _controller: "ESGIBlogBundle:Post:index" }
+
+post_list:
+    pattern: /post/list
+    defaults: { _controller: "ESGIBlogBundle:Post:list" }
+
+post_show:
+    pattern: /post/show/{id}
+    defaults: { _controller: "ESGIBlogBundle:Post:show" }
+
+post_add:
+    pattern: /post/add
+    defaults: { _controller: "ESGIBlogBundle:Post:add" }
+
+post_add:
+    pattern: /post/edit/{id}
+    defaults: { _controller: "ESGIBlogBundle:Post:edit" }
+
+post_delete:
+    pattern: /post/delete/{id}
+    defaults: { _controller: "ESGIBlogBundle:Post:delete" }
