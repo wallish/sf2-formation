@@ -24,19 +24,19 @@ class PostController extends Controller
     /**
      * @Template()
      */
-	public function indexAction()
-	{
-		$em = $this->getDoctrine()->getManager();
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('ESGIBlogBundle:Post')->findAll();
         $faker = \Faker\Factory::create();
         echo $faker->city;
         echo $faker->city;
         return [
-        	'posts' => $posts,
+            'posts' => $posts,
         ];
-	}
+    }
 
-	/**
+    /**
      * @Template()
      */
 	public function listAction(Request $request)
@@ -94,21 +94,21 @@ class PostController extends Controller
             'id' => $id,
             'comments' => $post[0]->getComments()->toArray()
         ];
-	}
+    }
 
-	// only admin can do this
-	public function deleteAction(Request $request)
+    // only admin can do this
+    public function deleteAction(Request $request)
     {
     	if($request->getMethod() == Request::METHOD_POST){
 
-	        $em = $this->getDoctrine()->getManager();
-	        $article = $em->getRepository('ESGIBlogBundle:Post')->findBy(array('id' => $id));
-	        $em->remove($article[0]);
-	        $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $article = $em->getRepository('ESGIBlogBundle:Post')->findBy(array('id' => $id));
+            $em->remove($article[0]);
+            $em->flush();
 
-	        $this->get('session')->getFlashBag()->add('success', 'Votre article a été correctement supprimé!');
-	    
-	        return $this->redirect($this->generateUrl('esgi_propose')); 
+            $this->get('session')->getFlashBag()->add('success', 'Votre article a été correctement supprimé!');
+
+            return $this->redirect($this->generateUrl('esgi_propose')); 
     	}
 
         return $this->render('ESGIBlogBundle:Post:delete.html.twig');

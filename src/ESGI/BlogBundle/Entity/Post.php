@@ -10,7 +10,7 @@ use Eko\FeedBundle\Item\Writer\ItemInterface;
 /**
  * Post
  *
- * @ORM\Table()
+ * @ORM\Table(name="post")
  * @ORM\Entity( repositoryClass="ESGI\BlogBundle\Repository\PostRepository")
  */
 class Post implements ItemInterface
