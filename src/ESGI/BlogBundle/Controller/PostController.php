@@ -90,6 +90,7 @@ class PostController extends Controller
         	'post' => $post,
             'form' => $form->createView(),
             'id' => $id,
+            'comments' => $post[0]->getComments()->toArray()
         ];
 	}
 

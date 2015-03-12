@@ -3,9 +3,6 @@
 <div>{{post[0].title}}</div>
 <div>{{post[0].body}}</div>
 
-
-{# loop comments #}
-
 <br>
 {# add comment #}
 {% for label, flashes in app.session.flashbag.all %}
@@ -23,8 +20,14 @@
         <div>{{ form_widget(form.text) }}</div>
         
         <p>
-            <input type="submit" value="add" />
+            <input type="submit" value="Ajouter" />
         </p> 
         {{ form_rest(form) }}
     </form>
 </div>
+
+{# loop comments #}
+
+{% for comment in comments %}
+	<div> {{comment.text}} </div>
+{% endfor %}
