@@ -3,6 +3,8 @@
 <div>{{post[0].title}}</div>
 <div>{{post[0].body}}</div>
 
+<br/>
+{{ twitterButton() }}
 <br>
 {# add comment #}
 {% for label, flashes in app.session.flashbag.all %}
@@ -31,3 +33,4 @@
 {% for comment in comments %}
 	<div> {{comment.text}} </div>
 {% endfor %}
+
