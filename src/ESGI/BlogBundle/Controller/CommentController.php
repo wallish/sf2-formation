@@ -13,7 +13,8 @@ use Doctrine\ORM\QueryBuilder;
 
 use ESGI\BlogBundle\Entity\Post as Post;
 use ESGI\BlogBundle\Entity\Comment as Comment;
-use ESGI\BlogBundle\Form\ProposePostType;
+use ESGI\BlogBundle\Form\AddCommentType;
+
 
 class CommentController extends Controller
 {
@@ -21,7 +22,7 @@ class CommentController extends Controller
     /**
      * @Template()
      */
-	public function addAction()
+	/*public function addAction()
 	{
 		$em = $this->getDoctrine()->getManager();	
         $post = $em->getRepository('ESGIBlogBundle:Post')->findBy(array("id" => 90));
@@ -38,6 +39,34 @@ class CommentController extends Controller
         return [
         	'post' => $post,
         ];
-	}
+	}*/
+
+    public function addAction(Request $request)
+    {
+        $comment = new Comment(); 
+        $form = $this->createForm(new AddCommentType(), $comment); 
+        
+        if($request->getMethod() == Request::METHOD_POST){
+            $form->handleRequest($request);
+            
+            if ($form->isValid()) {
+
+                $em = $this->getDoctrine()->getManager();
+                $comment->setIsPublished(false);
+
+                $em->persist($comment);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('success', 'Votre commentaire a été correctement enregistrée!');
+
+                return $this->redirect($this->generateUrl('comment_add')); 
+            }
+        }
+        
+        return $this->render('ESGIBlogBundle:Comment:add.html.twig',array(
+                'form' => $form->createView(), 
+            ));
+        
+        
+    }
 
 }
