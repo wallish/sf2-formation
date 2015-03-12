@@ -1,1 +1,33 @@
-{{dump(post)}}
+
+
+<div>{{post[0].title}}</div>
+<div>{{post[0].body}}</div>
+
+<br>
+{# add comment #}
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        <p>
+            {{ flash }}
+        </p>
+    {% endfor %}
+{% endfor %}
+<div>
+    <form action="{{ path('post_show',{'id':id}) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_errors(form) }}
+
+        <div>Poster un commentaire</div>
+        <div>{{ form_widget(form.text) }}</div>
+        
+        <p>
+            <input type="submit" value="Ajouter" />
+        </p> 
+        {{ form_rest(form) }}
+    </form>
+</div>
+
+{# loop comments #}
+
+{% for comment in comments %}
+	<div> {{comment.text}} </div>
+{% endfor %}
