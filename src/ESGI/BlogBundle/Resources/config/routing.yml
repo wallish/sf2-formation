@@ -18,6 +18,10 @@ post_add:
     pattern: /post/edit/{id}
     defaults: { _controller: "ESGIBlogBundle:Post:edit" }
 
+post_feed:
+    pattern: /post/feed
+    defaults: { _controller: "ESGIBlogBundle:Post:feed" }
+
 post_delete:
     pattern: /post/delete/{id}
     defaults: { _controller: "ESGIBlogBundle:Post:delete" }

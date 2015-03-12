@@ -135,9 +135,22 @@ class PostController extends Controller
         
         return $this->render('ESGIBlogBundle:Post:add.html.twig',array(
                 'form' => $form->createView(), 
-            ));
-        
-        
+            ));       
+    }
+
+    /**
+     * Generate the article feed
+     *
+     * @return Response XML Feed
+     */
+    public function feedAction()
+    {
+        $articles = $this->getDoctrine()->getRepository('ESGIBlogBundle:Post')->findAll();
+
+        $feed = $this->get('eko_feed.feed.manager')->get('article');
+        $feed->addFromArray($articles);
+
+        return new Response($feed->render('rss')); // or 'atom'
     }
 
 }

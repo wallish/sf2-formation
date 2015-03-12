@@ -94,6 +94,7 @@ sonata_block:
         # Enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts:   [admin]
+
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
     default_options:
@@ -104,3 +105,12 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+eko_feed:
+    feeds:
+        article:
+            title:       'Articles'
+            description: 'Derniers articles du blog'
+            link:        'sfproject'
+            encoding:    'utf-8'
+            author:      'SF2 Formation' # Seulement requis pour les flux de type Atom
