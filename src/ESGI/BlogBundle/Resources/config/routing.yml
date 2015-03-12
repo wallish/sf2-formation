@@ -21,3 +21,6 @@ post_add:
 post_delete:
     pattern: /post/delete/{id}
     defaults: { _controller: "ESGIBlogBundle:Post:delete" }
+    
+post_search:
+    pattern: /post/search/{term}

@@ -7,7 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Post
  *
- * @ORM\Table()
+ * @ORM\Table(name="post")
  * @ORM\Entity( repositoryClass="ESGI\BlogBundle\Repository\PostRepository")
  */
 class Post

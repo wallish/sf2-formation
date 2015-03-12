@@ -73,4 +73,9 @@ class DefaultController extends Controller
        
         return $this->render("ESGIBlogBundle:Default:index.html.twig", array("posts"=>$posts));
     }
+    
+    public function searchAction($term)
+    {
+        return $this->render("ESGIBlogBundle:Post:search.html.twig");
+    }
 }
