@@ -7,7 +7,7 @@ post_list:
     defaults: { _controller: "ESGIBlogBundle:Post:list" }
 
 post_show:
-    pattern: /post/show/{id}
+    pattern: /post/show/{slug}
     defaults: { _controller: "ESGIBlogBundle:Post:show" }
 
 post_add:

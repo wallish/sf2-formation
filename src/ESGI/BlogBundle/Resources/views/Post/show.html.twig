@@ -13,7 +13,7 @@
     {% endfor %}
 {% endfor %}
 <div>
-    <form action="{{ path('post_show',{'id':id}) }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('post_show',{'slug':slug}) }}" method="post" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
 
         <div>Poster un commentaire</div>

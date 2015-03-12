@@ -62,11 +62,11 @@ class PostController extends Controller
     /**
      * @Template()
      */
-	public function showAction(Request $request,$id)
+	public function showAction(Request $request,$slug)
 	{
         
         $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('ESGIBlogBundle:Post')->findBy(array("id" => $id));
+        $post = $em->getRepository('ESGIBlogBundle:Post')->findBy(array("slug" => $slug));
         
         $comment = new Comment(); 
         $form = $this->createForm(new AddCommentType(), $comment); 
@@ -84,14 +84,14 @@ class PostController extends Controller
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('success', 'Votre commentaire a été correctement enregistrée!');
 
-                return $this->redirect($this->generateUrl('post_show',array('id' => $id))); 
+                return $this->redirect($this->generateUrl('post_show',array('slug' => $slug))); 
             }
         }
 
         return [
         	'post' => $post,
             'form' => $form->createView(),
-            'id' => $id,
+            'slug' => $slug,
             'comments' => $post[0]->getComments()->toArray()
         ];
     }

@@ -7,17 +7,14 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class PostAdmin extends Admin
+class CommentAdmin extends Admin
 {
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', 'text', array('label' => 'Post Title'))
- //           ->add('category', 'entity', array('class' => 'ESGI\BlogBundle\Entity\Category'))
-            ->add('body') //if no type is specified, SonataAdminBundle tries to guess it
-            ->add('isPublished')
-            ->add('category')
+            ->add('text', 'text', array('label' => 'Commentaire'))
+//            ->add('author', 'entity', array('class' => 'Acme\DemoBundle\Entity\User'))
         ;
     }
 
@@ -25,7 +22,7 @@ class PostAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
+            ->add('text')
 //            ->add('author')
         ;
     }
@@ -34,8 +31,7 @@ class PostAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
-            ->add('slug')
+            ->addIdentifier('text')
 //            ->add('author')
         ;
     }
