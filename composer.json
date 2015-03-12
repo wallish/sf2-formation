@@ -25,7 +25,10 @@
         "sonata-project/doctrine-orm-admin-bundle": "~2.3",
         "sonata-project/easy-extends-bundle": "~2.1",
         "sonata-project/admin-bundle": "~2.3",
-        "knplabs/knp-paginator-bundle": "~2.4"
+        "knplabs/knp-paginator-bundle": "~2.4",
+        "willdurand/faker-bundle": "~1.2",
+        "fzaninotto/faker": "~1.4",
+        "eko/feedbundle": "~1.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

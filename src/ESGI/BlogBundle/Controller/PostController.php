@@ -17,6 +17,7 @@ use ESGI\BlogBundle\Form\ProposePostType;
 use ESGI\BlogBundle\Form\AddPostType;
 use ESGI\BlogBundle\Form\AddCommentType;
 
+
 class PostController extends Controller
 {
 
@@ -27,7 +28,9 @@ class PostController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('ESGIBlogBundle:Post')->findAll();
-
+        $faker = \Faker\Factory::create();
+        echo $faker->city;
+        echo $faker->city;
         return [
         	'posts' => $posts,
         ];
@@ -39,7 +42,6 @@ class PostController extends Controller
 	public function listAction(Request $request)
 	{
          
-
 	    $em    = $this->get('doctrine.orm.entity_manager');
 	    $dql   = "SELECT a FROM ESGIBlogBundle:Post a";
 	    $query = $em->createQuery($dql);
