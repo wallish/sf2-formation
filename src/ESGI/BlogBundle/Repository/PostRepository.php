@@ -15,4 +15,23 @@ class PostRepository extends EntityRepository
 		 	->getQuery()
 		 	->getResult();
 	}
+
+	public function count($published)
+	{
+		if(isset($published)){
+			$count = $this->createQueryBuilder('p')
+					 	->select('count(p.id)')
+					 	->andWhere('p.isPublished = :published')
+					 	->setParameter('published',$published)
+					 	->getQuery()
+					 	->getSingleScalarResult();
+		 }else{
+		 	$count = $this->createQueryBuilder('p')
+						 	->select('count(p.id)')
+						 	->getQuery()
+						 	->getSingleScalarResult();
+		 }
+
+		 return $count;
+	}
 }

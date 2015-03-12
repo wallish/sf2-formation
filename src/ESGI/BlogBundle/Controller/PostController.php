@@ -67,7 +67,7 @@ class PostController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository('ESGIBlogBundle:Post')->findBy(array("slug" => $slug));
-        
+       
         $comment = new Comment(); 
         $form = $this->createForm(new AddCommentType(), $comment); 
         

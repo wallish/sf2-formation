@@ -30,7 +30,8 @@
         "fzaninotto/faker": "~1.4",
         "eko/feedbundle": "~1.2",
         "friendsofsymfony/user-bundle": "~1.3",
-        "nomaya/social-bundle": "1.0.*@dev"
+        "nomaya/social-bundle": "1.0.*@dev",
+        "symfony/console": "~2.6"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
