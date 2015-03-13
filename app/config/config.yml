@@ -99,6 +99,7 @@ sonata_block:
         # Enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts:   [admin]
+
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
     default_options:
@@ -109,3 +110,45 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+eko_feed:
+    feeds:
+        article:
+            title:       'Articles'
+            description: 'Derniers articles du blog'
+            link:        'sfproject'
+            encoding:    'utf-8'
+            author:      'SF2 Formation' # Seulement requis pour les flux de type Atom
+
+nomaya_social:
+    buttons:
+        facebook:
+            url:            null
+            locale:         "fr_FR"
+            send:           false
+            width:          300
+            showFaces:      false
+            layout:         "button_count"
+        twitter:
+            url:            null
+            locale:         "fr"
+            message:        "Je veux partager ça avec vous"
+            text:           "Tweet"
+            via:            "JoliCode"
+            tag:            "symfony2"
+        googleplus:
+            url:            null
+            locale :        "fr"
+            size :          "medium"
+            annotation :    "bubble"
+            width :         300
+        linkedin:            
+            url:            null
+            locale:         "fr_FR"
+            counter:        "right"
+        pinterest:
+            url:            null
+    links: 
+        facebook:           "http://www.facebook.com/yann.chauvel"
+        googleplus:         "https://plus.google.com/105931415830389032796"
+    theme:                  'default' # optional

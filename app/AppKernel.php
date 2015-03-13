@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Eko\FeedBundle\EkoFeedBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new ESGI\UserBundle\ESGIUserBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

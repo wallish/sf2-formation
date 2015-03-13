@@ -5,6 +5,7 @@ namespace ESGI\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Eko\FeedBundle\Item\Writer\ItemInterface;
 
 /**
  * Post
@@ -12,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="post")
  * @ORM\Entity( repositoryClass="ESGI\BlogBundle\Repository\PostRepository")
  */
-class Post
+class Post implements ItemInterface
 {
 
     /**
@@ -332,7 +333,30 @@ class Post
     }
 
     /**
-     * Set author
+     * Returns article route name
+     * 
+     * @return string
+     */
+    public function getFeedItemRouteName()
+    {
+        return 'blog_article_view';
+    }
+
+    /**
+     * Returns article route parameters
+     * 
+     * @return array
+     */
+    public function getFeedItemRouteParameters()
+    {
+        return array('id' => $this->id);
+    }
+    public function getFeedItemTitle() { return $this->title; }
+    public function getFeedItemDescription() { return $this->body; }
+    public function getFeedItemPubDate() { return $this->created; }
+    public function getFeedItemLink() { return $this->slug; }
+    
+    /** Set author
      *
      * @param \ESGI\UserBundle\Entity\User $author
      * @return Post
