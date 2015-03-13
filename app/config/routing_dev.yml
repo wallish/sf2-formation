@@ -21,8 +21,6 @@ propose:
     pattern:  /propose
     defaults: { _controller: @ESGIBlogBundle:ProposeController:proposeAction }
 
-
-
 register:
     pattern:  /register
-    defaults: { _controller: @ESGIUserBundle:DefaultController:indexAction }
+    defaults: { _controller: @ESGIUserBundle:RegistrationController:registerAction }
