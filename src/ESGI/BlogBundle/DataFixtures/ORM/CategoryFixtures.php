@@ -10,23 +10,24 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
 class CategoryFixtures extends  AbstractFixture implements FixtureInterface
 {
-	public function load(ObjectManager $manager)
-	{
-		$i = 1;
-		while($i <= 10){
-			$category = new Category();
-			$category->setName('Category n°'.$i);
-			$manager->persist($category);
-			$this->addReference('category-'.$i,$category);
-			$i ++;
-		}
+    public function load(ObjectManager $manager)
+    {
+        $i = 1;
+        $faker = \Faker\Factory::create('fr_FR');
+        while($i <= 10){
+            $category = new Category();
+            $category->setName($faker->word);
+            $manager->persist($category);
+            $this->addReference('category-'.$i,$category);
+            $i ++;
+        }
 
-		$manager->flush();
-	}
+        $manager->flush();
+    }
 
-	public function getOrder()
-	{
-		return 1;
-	}
+    public function getOrder()
+    {
+        return 2;
+    }
 }
 

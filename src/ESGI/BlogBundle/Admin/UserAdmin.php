@@ -7,13 +7,18 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class CategoryAdmin extends Admin
+class UserAdmin extends Admin
 {
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', 'text', array('label' => 'Category name'))
+            ->add('username', 'text')
+            ->add('firstname','text') 
+            ->add('lastname', 'text')
+            ->add('email')
+            ->add('roles')
+            ->add('enabled')
         ;
     }
 
@@ -21,7 +26,10 @@ class CategoryAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
+            ->add('username')
+            ->add('firstname')
+            ->add('lastname')
+            ->add('email')
         ;
     }
 
@@ -29,7 +37,10 @@ class CategoryAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
+            ->addIdentifier('username')
+            ->add('firstname')
+            ->add('lastname')
+            ->add('email')
         ;
     }
 }

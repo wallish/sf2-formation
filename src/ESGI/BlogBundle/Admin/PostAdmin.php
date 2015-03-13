@@ -14,10 +14,9 @@ class PostAdmin extends Admin
     {
         $formMapper
             ->add('title', 'text', array('label' => 'Post Title'))
-//            ->add('author', 'entity', array('class' => 'Acme\DemoBundle\Entity\User'))
             ->add('body') //if no type is specified, SonataAdminBundle tries to guess it
             ->add('isPublished')
-            ->add('category')
+            ->add('category','entity', array('class' => 'ESGIBlogBundle:Category','property' => 'name'))
         ;
     }
 
@@ -26,7 +25,7 @@ class PostAdmin extends Admin
     {
         $datagridMapper
             ->add('title')
-//            ->add('author')
+            ->add('author')
         ;
     }
 
@@ -36,7 +35,7 @@ class PostAdmin extends Admin
         $listMapper
             ->addIdentifier('title')
             ->add('slug')
-//            ->add('author')
+            ->add('author')
         ;
     }
 }

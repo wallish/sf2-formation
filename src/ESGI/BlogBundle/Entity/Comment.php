@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Comment
  *
- * @ORM\Table()
+ * @ORM\Table(name="comment")
  * @ORM\Entity
  */
 class Comment
@@ -17,6 +17,12 @@ class Comment
     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
     */
     protected $post;
+    
+    /**
+    * @ORM\ManyToOne(targetEntity="ESGI\UserBundle\Entity\User")
+    * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+    */
+    private $author;
 
     /**
      * @var integer
@@ -119,5 +125,28 @@ class Comment
     public function getPost()
     {
         return $this->post;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \ESGI\UserBundle\Entity\User $author
+     * @return Comment
+     */
+    public function setAuthor(\ESGI\UserBundle\Entity\User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \ESGI\UserBundle\Entity\User 
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }

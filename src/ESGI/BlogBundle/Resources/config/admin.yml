@@ -19,3 +19,23 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [ESGIBlogBundle]]
+    sonata.admin.comment:
+        class: ESGI\BlogBundle\Admin\CommentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Comment" }
+        arguments:
+            - ~
+            - ESGI\BlogBundle\Entity\Comment
+            - ~
+        calls:
+            - [ setTranslationDomain, [ESGIBlogBundle]]
+    sonata.admin.user:
+        class: ESGI\BlogBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "User", label: "User" }
+        arguments:
+            - ~
+            - ESGI\UserBundle\Entity\User
+            - ~
+        calls:
+            - [ setTranslationDomain, [ESGIBlogBundle]]

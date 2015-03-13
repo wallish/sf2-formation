@@ -95,6 +95,12 @@ class Post
      * @Gedmo\Timestampable(on="change", field={"title", "body"})
      */
     private $contentChanged;
+    
+    /**
+10   * @ORM\ManyToOne(targetEntity="ESGI\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
+12   */
+    private $author;
 
 
 
@@ -323,5 +329,28 @@ class Post
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \ESGI\UserBundle\Entity\User $author
+     * @return Post
+     */
+    public function setAuthor(\ESGI\UserBundle\Entity\User $author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \ESGI\UserBundle\Entity\User 
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }
