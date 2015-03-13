@@ -17,6 +17,7 @@
         </p>
     {% endfor %}
 {% endfor %}
+{% if app.user %}
 <div>
     <form action="{{ path('post_show',{'slug':slug}) }}" method="post" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
@@ -30,6 +31,9 @@
         {{ form_rest(form) }}
     </form>
 </div>
+{% else %}
+<div>Vous devez vous identifier pour poster un commentaire</div>
+{% endif %}
 
 {# loop comments #}
 
