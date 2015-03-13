@@ -16,3 +16,13 @@ _errors:
 
 _main:
     resource: routing.yml
+
+propose:
+    pattern:  /propose
+    defaults: { _controller: @ESGIBlogBundle:ProposeController:proposeAction }
+
+
+
+register:
+    pattern:  /register
+    defaults: { _controller: @ESGIUserBundle:DefaultController:indexAction }

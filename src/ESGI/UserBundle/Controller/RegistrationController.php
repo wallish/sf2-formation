@@ -4,7 +4,7 @@ namespace ESGI\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class RegistrationController extends Controller
 {
     public function indexAction($name)
     {

@@ -1,5 +1,6 @@
-
-
+{% extends "::base.html.twig" %}
+{% block body %}
+<div class="content jumbotron">
 <div>{{post[0].title}}</div>
 <div>{{post[0].body}}</div>
 
@@ -19,10 +20,10 @@
         {{ form_errors(form) }}
 
         <div>Poster un commentaire</div>
-        <div>{{ form_widget(form.text) }}</div>
+        <div>{{ form_widget(form.text, {'attr': {'class' :'form-control'}}) }}</div>
         
         <p>
-            <input type="submit" value="Ajouter" />
+            <input type="submit" value="Ajouter" class="btn btn-primary btn-raised" />
         </p> 
         {{ form_rest(form) }}
     </form>
@@ -33,4 +34,5 @@
 {% for comment in comments %}
 	<div> {{comment.text}} </div>
 {% endfor %}
-
+</div>
+{% endblock %}
