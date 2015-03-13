@@ -9,6 +9,7 @@ use Doctrine\ORM\Query;
 use ESGI\BlogBundle\Entity\Post as Post;
 use ESGI\BlogBundle\Entity\Comment as Comment;
 use ESGI\BlogBundle\Form\AddCommentType;
+use Symfony\Component\HttpFoundation\Response;
 
 class PostController extends Controller
 {
@@ -79,5 +80,19 @@ class PostController extends Controller
             'slug' => $slug,
             'comments' => $post[0]->getComments()->toArray(),
         ];
+    }
+    /**
+     * Generate the article feed.
+     *
+     * @return Response XML Feed
+     */
+    public function feedAction()
+    {
+        $articles = $this->getDoctrine()->getRepository('ESGIBlogBundle:Post')->findAll();
+
+        $feed = $this->get('eko_feed.feed.manager')->get('article');
+        $feed->addFromArray($articles);
+
+        return new Response($feed->render('rss')); // or 'atom'
     }
 }

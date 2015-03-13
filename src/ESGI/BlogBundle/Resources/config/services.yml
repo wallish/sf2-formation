@@ -1,1 +1,10 @@
 services:
+    esgi.blog.notify:
+        class:     ESGI\BlogBundle\Notify\Notify
+        arguments: [@mailer]
+
+    esgi.blog.notify_listener:
+        class:     ESGI\BlogBundle\Notify\NotifyListener
+        arguments: [@esgi.blog.notify]
+        tags:
+            - { name: kernel.event_listener, event: esgi.blog.propose_notify, method: processNotify }

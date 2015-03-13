@@ -11,8 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use ESGI\BlogBundle\Entity\Post as Post;
 use ESGI\BlogBundle\Form\ProposePostType;
 //
-//use ESGI\BlogBundle\Notify\NotifyEvents;
-//use ESGI\BlogBundle\Events\ProposePostEvent;
+use ESGI\BlogBundle\Notify\NotifyEvents;
+use ESGI\BlogBundle\Event\ProposePostEvent;
 
 class ProposeController extends Controller
 {
@@ -36,20 +36,20 @@ class ProposeController extends Controller
                 $em->persist($post);
                 $em->flush();
                 
-//                $event = new ProposePostEvent($post, $post->getAuthor());
-//
-//                $this
-//                  ->get('event_dispatcher')
-//                  ->dispatch(NotifyEvents::onProposePost, $event)
-//                ; 
-                
-                $message = \Swift_Message::newInstance()
-                    ->setSubject("Un nouvel article a été proposé")
-                    ->setFrom('admin@keninjafa.com')
-                    ->setTo('fanorazafi@gmail.com')
-                    ->setBody("L'utilisateur ".$post->getAuthor()->getUsername()." a proposé un nouvel article : <b>".$post->getTitle()."</b><br />".$post->getBody());
+                $event = new ProposePostEvent($post, $post->getAuthor());
 
-                $this->get('mailer')->send($message);
+                $this
+                  ->get('event_dispatcher')
+                  ->dispatch(NotifyEvents::onProposePost, $event)
+                ; 
+                
+//                $message = \Swift_Message::newInstance()
+//                    ->setSubject("Un nouvel article a été proposé")
+//                    ->setFrom('admin@keninjafa.com')
+//                    ->setTo('fanorazafi@gmail.com')
+//                    ->setBody("L'utilisateur ".$post->getAuthor()->getUsername()." a proposé un nouvel article : <b>".$post->getTitle()."</b><br />".$post->getBody());
+//
+//                $this->get('mailer')->send($message);
                 
                 $this->get('session')->getFlashBag()->add('success', 'Votre proposition a été correctement enregistrée!');
                 return $this->redirect($this->generateUrl('esgi_propose')); 
