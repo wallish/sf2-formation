@@ -8,6 +8,11 @@ class DefaultController extends Controller
 {
     public function indexAction($name)
     {
-        return $this->render('ESGIUserBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('ESGIUserBundle:Default:index2.html.twig', array('name' => $name));
+    }
+
+    public function registerAction($name)
+    {
+    	return $this->render('ESGIUserBundle:Default:index2.html.twig', array('name' => $name));
     }
 }

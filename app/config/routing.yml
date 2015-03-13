@@ -15,6 +15,14 @@ app:
     resource: @AppBundle/Controller/
     type:     annotation
 
+propose:
+    pattern:  /propose
+    defaults: { _controller: @ESGIBlogBundle:ProposeController:proposeAction }
+
+register:
+    pattern:  /register
+    defaults: { _controller: @ESGIUserBundle:RegistrationController:registerAction }
+
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin

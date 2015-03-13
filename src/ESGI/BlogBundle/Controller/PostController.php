@@ -3,24 +3,15 @@
 namespace ESGI\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\Query;
-use Doctrine\Common\Collection\ArrayCollection;
-use Doctrine\ORM\QueryBuilder;
-
 use ESGI\BlogBundle\Entity\Post as Post;
 use ESGI\BlogBundle\Entity\Comment as Comment;
-use ESGI\BlogBundle\Form\ProposePostType;
-use ESGI\BlogBundle\Form\AddPostType;
 use ESGI\BlogBundle\Form\AddCommentType;
-
 
 class PostController extends Controller
 {
-
     /**
      * @Template()
      */
@@ -28,9 +19,7 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('ESGIBlogBundle:Post')->findAll();
-        $faker = \Faker\Factory::create();
-        echo $faker->city;
-        echo $faker->city;
+
         return [
             'posts' => $posts,
         ];
@@ -41,16 +30,14 @@ class PostController extends Controller
      */
     public function listAction(Request $request)
     {
-
-        $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM ESGIBlogBundle:Post a";
-        $query = $em->createQuery($dql);
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('ESGIBlogBundle:Post')->paginator();
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query,
-            $request->query->get('page', 1)/*page number*/,
-            10/*limit per page*/
+            $request->query->get('page', 1),
+            10
         );
 
         // parameters to template
@@ -62,20 +49,18 @@ class PostController extends Controller
     /**
      * @Template()
      */
-	public function showAction(Request $request,$slug)
-	{
-        
+    public function showAction(Request $request, $slug)
+    {
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository('ESGIBlogBundle:Post')->findBy(array("slug" => $slug));
-       
-        $comment = new Comment(); 
-        $form = $this->createForm(new AddCommentType(), $comment); 
-        
-        if($request->getMethod() == Request::METHOD_POST){
-            $form->handleRequest($request);
-            
-            if ($form->isValid()) {
 
+        $comment = new Comment();
+        $form = $this->createForm(new AddCommentType(), $comment);
+
+        if ($request->getMethod() == Request::METHOD_POST) {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $comment->setIsPublished(false);
                 $comment->setPost($post[0]);
@@ -84,7 +69,7 @@ class PostController extends Controller
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('success', 'Votre commentaire a été correctement enregistrée!');
 
-                return $this->redirect($this->generateUrl('post_show',array('slug' => $slug))); 
+                return $this->redirect($this->generateUrl('post_show', array('slug' => $slug)));
             }
         }
 
@@ -92,9 +77,7 @@ class PostController extends Controller
             'post' => $post,
             'form' => $form->createView(),
             'slug' => $slug,
-            'comments' => $post[0]->getComments()->toArray()
+            'comments' => $post[0]->getComments()->toArray(),
         ];
     }
-
-
 }
