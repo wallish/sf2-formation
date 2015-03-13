@@ -81,6 +81,7 @@ class PostController extends Controller
             'comments' => $post[0]->getComments()->toArray(),
         ];
     }
+
     /**
      * Generate the article feed.
      *

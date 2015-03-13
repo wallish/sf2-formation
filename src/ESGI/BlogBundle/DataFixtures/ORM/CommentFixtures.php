@@ -5,7 +5,6 @@ use ESGI\BlogBundle\Entity\Comment;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
 class CommentFixtures extends  AbstractFixture implements FixtureInterface
 {
@@ -13,16 +12,16 @@ class CommentFixtures extends  AbstractFixture implements FixtureInterface
     {
         $faker = \Faker\Factory::create('fr_FR');
         $i = 1;
-        while($i <= 100){
+        while ($i <= 100) {
             $comment = new Comment();
             $comment->setText($faker->realText($maxNbChars = 100, $indexSize = 2));
-            
-            $rand = rand(1,20);
+
+            $rand = rand(1, 20);
             $comment->setAuthor($this->getReference('user-'.$rand));
 
             $comment->setIsPublished($i%2);
 
-            $rand = rand(1,100);
+            $rand = rand(1, 100);
             $comment->setPost($this->getReference('post-'.$rand));
 
             $manager->persist($comment);
@@ -38,4 +37,3 @@ class CommentFixtures extends  AbstractFixture implements FixtureInterface
         return 4;
     }
 }
-

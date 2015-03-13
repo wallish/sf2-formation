@@ -1,9 +1,9 @@
 post_index:
-    pattern: /post
-    defaults: { _controller: "ESGIBlogBundle:Post:index" }
+    pattern: /post/list
+    defaults: { _controller: "ESGIBlogBundle:Post:list" }
 
 post_list:
-    pattern: /post/list
+    pattern: /
     defaults: { _controller: "ESGIBlogBundle:Post:list" }
 
 post_show:
@@ -29,6 +29,6 @@ post_delete:
 comment_add:
     pattern: /comment/add
     defaults: { _controller: "ESGIBlogBundle:Comment:add" }
-    
+
 post_search:
     pattern: /post/search/{term}

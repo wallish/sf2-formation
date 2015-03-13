@@ -6,25 +6,24 @@ use Symfony\Bridge\Monolog\Logger;
 
 class Computer
 {
-	
-	protected $power;
-	protected $logger;
+    protected $power;
+    protected $logger;
 
-	public function __construct($power, Logger $logger)
-	{
-		$this->power = $power;
-		$this->logger = $logger;
-	}
+    public function __construct($power, Logger $logger)
+    {
+        $this->power = $power;
+        $this->logger = $logger;
+    }
 
+    public function addition($a, $b)
+    {
+        return $a+$b;
+    }
 
-	public function addition($a,$b)
-	{
-		return $a+$b;
-	}
+    public function power($n)
+    {
+        $this->logger->info(sprintf('on calcule %s puissance %s', $n, $this->power));
 
-	public function power($n)
-	{
-		$this->logger->info(sprintf('on calcule %s puissance %s',$n,$this->power));
-		return pow((int)$n, (int)$this->power);
-	}
+        return pow((int) $n, (int) $this->power);
+    }
 }

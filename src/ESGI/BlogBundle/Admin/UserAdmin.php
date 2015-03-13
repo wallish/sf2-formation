@@ -9,17 +9,17 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class UserAdmin extends Admin
 {
-    protected function configureRoutes(\Sonata\AdminBundle\Route\RouteCollection $collection) 
+    protected function configureRoutes(\Sonata\AdminBundle\Route\RouteCollection $collection)
     {
         $collection->remove('create');
     }
-    
-    // Fields to be shown on create/edit 
+
+    // Fields to be shown on create/edit
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('username', 'text')
-            ->add('firstname','text') 
+            ->add('firstname', 'text')
             ->add('lastname', 'text')
             ->add('email')
             ->add('roles')

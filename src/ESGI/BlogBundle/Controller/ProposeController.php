@@ -4,12 +4,10 @@ namespace ESGI\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-
 use ESGI\BlogBundle\Entity\Post as Post;
 use ESGI\BlogBundle\Form\ProposePostType;
+
 //
 use ESGI\BlogBundle\Notify\NotifyEvents;
 use ESGI\BlogBundle\Event\ProposePostEvent;
@@ -21,13 +19,12 @@ class ProposeController extends Controller
      */
     public function proposeAction(Request $request)
     {
-        $post = new Post(); 
-        $form = $this->createForm(new ProposePostType(), $post); 
-        
-        if($request->getMethod() == Request::METHOD_POST){
-            
+        $post = new Post();
+        $form = $this->createForm(new ProposePostType(), $post);
+
+        if ($request->getMethod() == Request::METHOD_POST) {
             $form->handleRequest($request);
-            
+
             if ($form->isValid()) {
                 $user = $this->get('security.context')->getToken()->getUser();
                 $em = $this->getDoctrine()->getManager();
@@ -54,14 +51,14 @@ class ProposeController extends Controller
                 $this->get('session')->getFlashBag()->add('success', 'Votre proposition a été correctement enregistrée!');
                 return $this->redirect($this->generateUrl('esgi_propose')); 
 
+                $this->get('session')->getFlashBag()->add('success', 'Votre proposition a été correctement enregistrée!');
+
+                return $this->redirect($this->generateUrl('esgi_propose'));
             }
         }
-        
-        return $this->render('ESGIBlogBundle:Propose:propose.html.twig',array(
-                'form' => $form->createView(), 
-                ));
-        
-        
-    }   
 
+        return $this->render('ESGIBlogBundle:Propose:propose.html.twig', array(
+                'form' => $form->createView(),
+                ));
+    }
 }

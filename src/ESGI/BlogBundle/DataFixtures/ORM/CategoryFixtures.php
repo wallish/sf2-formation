@@ -5,7 +5,7 @@ use ESGI\BlogBundle\Entity\Category;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+
 //use Doctrine\Common\Collections\ArrayCollection;
 
 class CategoryFixtures extends  AbstractFixture implements FixtureInterface
@@ -14,11 +14,11 @@ class CategoryFixtures extends  AbstractFixture implements FixtureInterface
     {
         $i = 1;
         $faker = \Faker\Factory::create('fr_FR');
-        while($i <= 10){
+        while ($i <= 10) {
             $category = new Category();
             $category->setName($faker->word);
             $manager->persist($category);
-            $this->addReference('category-'.$i,$category);
+            $this->addReference('category-'.$i, $category);
             $i ++;
         }
 
@@ -30,4 +30,3 @@ class CategoryFixtures extends  AbstractFixture implements FixtureInterface
         return 2;
     }
 }
-
