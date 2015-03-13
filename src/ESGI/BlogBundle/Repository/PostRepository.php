@@ -34,4 +34,15 @@ class PostRepository extends EntityRepository
 
 		 return $count;
 	}
+
+	public function paginator()
+	{
+		$em = $this->getEntityManager();
+        $dql   = "SELECT a FROM ESGIBlogBundle:Post a";
+        $query = $em->createQuery($dql);
+
+      
+
+       return $query;
+	}
 }
