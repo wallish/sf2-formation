@@ -26,6 +26,7 @@ class PostAdmin extends Admin
         $datagridMapper
             ->add('title')
             ->add('author')
+            ->add('isPublished')
         ;
     }
 
@@ -36,6 +37,7 @@ class PostAdmin extends Admin
             ->addIdentifier('title')
             ->add('slug')
             ->add('author')
+            ->add('isPublished')
         ;
     }
 }
