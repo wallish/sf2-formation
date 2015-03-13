@@ -38,7 +38,9 @@
 {# loop comments #}
 
 {% for comment in comments %}
-	<div> {{comment.text}} {{comment.text}} </div>
+    {% if comment.isPublished == true %}
+	   <div> {{comment.text}}</div>
+    {% endif %}
 {% endfor %}
 </div>
 {% endblock %}
