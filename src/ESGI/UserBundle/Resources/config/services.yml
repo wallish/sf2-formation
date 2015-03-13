@@ -1,4 +1,13 @@
 services:
+#    esgi.blog.notify:
+#        class: ESGI\BlogBundle\Notify\Notify
+#        
+#    esgo.blog.listener:
+#        class: ESGI\BlogBundle\Notify\NotifyListener
+#        arguments: [@esgi.blog.notify]
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.response, method: processNotify }
 #    esgi_user.example:
 #        class: ESGI\UserBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+    

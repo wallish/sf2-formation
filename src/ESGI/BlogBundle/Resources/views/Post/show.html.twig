@@ -15,6 +15,7 @@
         </p>
     {% endfor %}
 {% endfor %}
+
 <div>
     <form action="{{ path('post_show',{'slug':slug}) }}" method="post" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
@@ -32,7 +33,7 @@
 {# loop comments #}
 
 {% for comment in comments %}
-	<div> {{comment.text}} </div>
+    <div> {{comment.text}} </div>
 {% endfor %}
 </div>
 {% endblock %}

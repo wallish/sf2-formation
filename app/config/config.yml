@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: @ESGIBlogBundle/Resources/config/admin.yml }
+    #- { resource: @ESGIBlogBundle/Resources/config/services.yml }
 
 framework:
     #esi:             ~
@@ -89,7 +90,7 @@ stof_doctrine_extensions:
             timestampable: true # not needed: listeners are not enabled by default
 
 sonata_admin:
-    title:      ESGI Blog Bundle
+    title:      ESGI Blog Admin
 
 sonata_block:
     default_contexts: [cms]
