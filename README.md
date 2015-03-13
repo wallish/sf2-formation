@@ -70,3 +70,6 @@ Enjoy!
 
 # Exec fixtures #
 php app/console doctrine:fixtures:load --fixtures=./src/ESGI/UserBundle/DataFixtures/ORM/ --fixtures=./src/ESGI/BlogBundle/DataFixtures/ORM/
+
+# Test phpunit #
+phpunit -c app src/ESGI/BlogBundle/Tests/Controller/DefaultControllerTest.php

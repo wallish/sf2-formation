@@ -82,7 +82,7 @@ class PostController extends Controller
         ];
     }
 
-        /**
+    /**
      * Generate the article feed
      *
      * @return Response XML Feed

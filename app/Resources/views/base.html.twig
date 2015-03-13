@@ -50,12 +50,15 @@
                   <li><a href="javascript:void(0)">yoyoyoyo2</a></li>
                 </ul>
               </li>
+              <li><a href="{{ path('propose') }}">Proposer<div class="ripple-wrapper"></div></a></li>
+              <li><a href="{{ path('post_list') }}">Liste<div class="ripple-wrapper"></div></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('register') }}">Inscription</a></li>
             </ul>
           </div>
         </div>
-        <div class="content">
             {% block body %}{% endblock %}
-        </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
