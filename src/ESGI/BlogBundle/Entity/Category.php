@@ -6,24 +6,22 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Category
+ * Category.
  *
  * @ORM\Table(name="category")
  * @ORM\Entity
  */
 class Category
 {
-
     /**
-    * @ORM\OneToMany(targetEntity="Post", mappedBy="category")
-    */
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="category")
+     */
     protected $posts;
 
     public function __construct()
     {
         $this->posts = new ArrayCollection();
     }
-
 
     /**
      * @var integer
@@ -41,11 +39,10 @@ class Category
      */
     private $name;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -53,9 +50,10 @@ class Category
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Category
      */
     public function setName($name)
@@ -66,9 +64,9 @@ class Category
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -76,9 +74,10 @@ class Category
     }
 
     /**
-     * Add posts
+     * Add posts.
      *
      * @param \ESGI\BlogBundle\Entity\Post $posts
+     *
      * @return Category
      */
     public function addPost(\ESGI\BlogBundle\Entity\Post $posts)
@@ -89,7 +88,7 @@ class Category
     }
 
     /**
-     * Remove posts
+     * Remove posts.
      *
      * @param \ESGI\BlogBundle\Entity\Post $posts
      */
@@ -99,9 +98,9 @@ class Category
     }
 
     /**
-     * Get posts
+     * Get posts.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPosts()
     {

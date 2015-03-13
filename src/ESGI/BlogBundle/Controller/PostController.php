@@ -83,7 +83,7 @@ class PostController extends Controller
     }
 
     /**
-     * Generate the article feed
+     * Generate the article feed.
      *
      * @return Response XML Feed
      */

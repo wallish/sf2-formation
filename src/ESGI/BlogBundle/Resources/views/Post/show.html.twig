@@ -1,7 +1,9 @@
 {% extends "::base.html.twig" %}
 {% block body %}
 <div class="content jumbotron">
-<div>{{post[0].title}}</div>
+
+<h3>{{post[0].title}}</h3>
+<div>Crée le : {{post[0].created|date('Y-m-d') }}</div>
 <div>{{post[0].body}}</div>
 
 <br/>
@@ -15,17 +17,16 @@
         </p>
     {% endfor %}
 {% endfor %}
-
 <div>
     <form action="{{ path('post_show',{'slug':slug}) }}" method="post" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
 
         <div>Poster un commentaire</div>
         <div>{{ form_widget(form.text, {'attr': {'class' :'form-control'}}) }}</div>
-        
+
         <p>
             <input type="submit" value="Ajouter" class="btn btn-primary btn-raised" />
-        </p> 
+        </p>
         {{ form_rest(form) }}
     </form>
 </div>
@@ -33,7 +34,7 @@
 {# loop comments #}
 
 {% for comment in comments %}
-    <div> {{comment.text}} </div>
+	<div> {{comment.text}} {{comment.text}} </div>
 {% endfor %}
 </div>
 {% endblock %}

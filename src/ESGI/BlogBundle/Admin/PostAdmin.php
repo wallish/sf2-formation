@@ -16,7 +16,7 @@ class PostAdmin extends Admin
             ->add('title', 'text', array('label' => 'Post Title'))
             ->add('body') //if no type is specified, SonataAdminBundle tries to guess it
             ->add('isPublished')
-            ->add('category','entity', array('class' => 'ESGIBlogBundle:Category','property' => 'name'))
+            ->add('category', 'entity', array('class' => 'ESGIBlogBundle:Category', 'property' => 'name'))
         ;
     }
 

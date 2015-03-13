@@ -8,18 +8,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Eko\FeedBundle\Item\Writer\ItemInterface;
 
 /**
- * Post
+ * Post.
  *
  * @ORM\Table(name="post")
  * @ORM\Entity( repositoryClass="ESGI\BlogBundle\Repository\PostRepository")
  */
 class Post implements ItemInterface
 {
-
     /**
-    * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
-    * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-    */
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
     protected $category;
 
     /**
@@ -31,7 +30,6 @@ class Post implements ItemInterface
     {
         $this->comments = new ArrayCollection();
     }
-
 
     /**
      * @var integer
@@ -63,18 +61,16 @@ class Post implements ItemInterface
      */
     private $isPublished;
 
-
     /**
-    *@var string $slug
-    *
-    * @Gedmo\Slug(fields={"title"}, updatable=false, separator="-")
-    * @ORM\Column(name="slug", type="string", length=255)
-    */
+     *@var string
+     *
+     * @Gedmo\Slug(fields={"title"}, updatable=false, separator="-")
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
     private $slug;
 
-
     /**
-     * @var \DateTime $created
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
@@ -82,7 +78,7 @@ class Post implements ItemInterface
     private $created;
 
     /**
-     * @var \DateTime $updated
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
@@ -90,25 +86,23 @@ class Post implements ItemInterface
     private $updated;
 
     /**
-     * @var \DateTime $contentChanged
+     * @var \DateTime
      *
      * @ORM\Column(name="content_changed", type="datetime", nullable=true)
      * @Gedmo\Timestampable(on="change", field={"title", "body"})
      */
     private $contentChanged;
-    
+
     /**
-10   * @ORM\ManyToOne(targetEntity="ESGI\UserBundle\Entity\User")
+     10   * @ORM\ManyToOne(targetEntity="ESGI\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
-12   */
+     12   */
     private $author;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -116,9 +110,10 @@ class Post implements ItemInterface
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return Post
      */
     public function setTitle($title)
@@ -129,9 +124,9 @@ class Post implements ItemInterface
     }
 
     /**
-     * Get title
+     * Get title.
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -139,9 +134,10 @@ class Post implements ItemInterface
     }
 
     /**
-     * Set body
+     * Set body.
      *
      * @param string $body
+     *
      * @return Post
      */
     public function setBody($body)
@@ -152,9 +148,9 @@ class Post implements ItemInterface
     }
 
     /**
-     * Get body
+     * Get body.
      *
-     * @return string 
+     * @return string
      */
     public function getBody()
     {
@@ -162,9 +158,10 @@ class Post implements ItemInterface
     }
 
     /**
-     * Set isPublished
+     * Set isPublished.
      *
      * @param boolean $isPublished
+     *
      * @return Post
      */
     public function setIsPublished($isPublished)
@@ -175,9 +172,9 @@ class Post implements ItemInterface
     }
 
     /**
-     * Get isPublished
+     * Get isPublished.
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsPublished()
     {
@@ -185,9 +182,10 @@ class Post implements ItemInterface
     }
 
     /**
-     * Set category
+     * Set category.
      *
      * @param \ESGI\BlogBundle\Entity\Category $category
+     *
      * @return Post
      */
     public function setCategory(\ESGI\BlogBundle\Entity\Category $category = null)
@@ -198,9 +196,9 @@ class Post implements ItemInterface
     }
 
     /**
-     * Get category
+     * Get category.
      *
-     * @return \ESGI\BlogBundle\Entity\Category 
+     * @return \ESGI\BlogBundle\Entity\Category
      */
     public function getCategory()
     {
@@ -208,9 +206,10 @@ class Post implements ItemInterface
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
+     *
      * @return Post
      */
     public function setSlug($slug)
@@ -221,9 +220,9 @@ class Post implements ItemInterface
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -231,9 +230,10 @@ class Post implements ItemInterface
     }
 
     /**
-     * Set created
+     * Set created.
      *
      * @param \DateTime $created
+     *
      * @return Post
      */
     public function setCreated($created)
@@ -244,9 +244,9 @@ class Post implements ItemInterface
     }
 
     /**
-     * Get created
+     * Get created.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -254,9 +254,10 @@ class Post implements ItemInterface
     }
 
     /**
-     * Set updated
+     * Set updated.
      *
      * @param \DateTime $updated
+     *
      * @return Post
      */
     public function setUpdated($updated)
@@ -267,9 +268,9 @@ class Post implements ItemInterface
     }
 
     /**
-     * Get updated
+     * Get updated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -277,9 +278,10 @@ class Post implements ItemInterface
     }
 
     /**
-     * Set contentChanged
+     * Set contentChanged.
      *
      * @param \DateTime $contentChanged
+     *
      * @return Post
      */
     public function setContentChanged($contentChanged)
@@ -290,9 +292,9 @@ class Post implements ItemInterface
     }
 
     /**
-     * Get contentChanged
+     * Get contentChanged.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getContentChanged()
     {
@@ -300,9 +302,10 @@ class Post implements ItemInterface
     }
 
     /**
-     * Add comments
+     * Add comments.
      *
      * @param \ESGI\BlogBundle\Entity\Comment $comments
+     *
      * @return Post
      */
     public function addComment(\ESGI\BlogBundle\Entity\Comment $comments)
@@ -313,7 +316,7 @@ class Post implements ItemInterface
     }
 
     /**
-     * Remove comments
+     * Remove comments.
      *
      * @param \ESGI\BlogBundle\Entity\Comment $comments
      */
@@ -323,9 +326,9 @@ class Post implements ItemInterface
     }
 
     /**
-     * Get comments
+     * Get comments.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {
@@ -333,8 +336,8 @@ class Post implements ItemInterface
     }
 
     /**
-     * Returns article route name
-     * 
+     * Returns article route name.
+     *
      * @return string
      */
     public function getFeedItemRouteName()
@@ -343,22 +346,34 @@ class Post implements ItemInterface
     }
 
     /**
-     * Returns article route parameters
-     * 
+     * Returns article route parameters.
+     *
      * @return array
      */
     public function getFeedItemRouteParameters()
     {
         return array('id' => $this->id);
     }
-    public function getFeedItemTitle() { return $this->title; }
-    public function getFeedItemDescription() { return $this->body; }
-    public function getFeedItemPubDate() { return $this->created; }
-    public function getFeedItemLink() { return $this->slug; }
-    
+    public function getFeedItemTitle()
+    {
+        return $this->title;
+    }
+    public function getFeedItemDescription()
+    {
+        return $this->body;
+    }
+    public function getFeedItemPubDate()
+    {
+        return $this->created;
+    }
+    public function getFeedItemLink()
+    {
+        return $this->slug;
+    }
+
     /** Set author
-     *
      * @param \ESGI\UserBundle\Entity\User $author
+     *
      * @return Post
      */
     public function setAuthor(\ESGI\UserBundle\Entity\User $author)
@@ -369,9 +384,9 @@ class Post implements ItemInterface
     }
 
     /**
-     * Get author
+     * Get author.
      *
-     * @return \ESGI\UserBundle\Entity\User 
+     * @return \ESGI\UserBundle\Entity\User
      */
     public function getAuthor()
     {

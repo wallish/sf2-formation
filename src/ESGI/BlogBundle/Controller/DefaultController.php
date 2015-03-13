@@ -7,8 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-
 use ESGI\BlogBundle\Entity\Post as Post;
+
 //use ESGI\BlogBundle\Entity\PostRepository;
 
 class DefaultController extends Controller
@@ -19,8 +19,8 @@ class DefaultController extends Controller
     public function cityAction($name, $city)
     {
         return new Response(sprintf(
-        	'Salut %s, on est à %s', $name, $city
-    	));
+            'Salut %s, on est à %s', $name, $city
+        ));
     }
 
     /**
@@ -28,10 +28,10 @@ class DefaultController extends Controller
      */
     public function totoAction(Request $request)
     {
-    	//die(var_dump($request));
+        //die(var_dump($request));
         return new Response(sprintf(
-        	'Salut %s, on est à %s', $name, $city
-    	));
+            'Salut %s, on est à %s', $name, $city
+        ));
     }
 
     /**
@@ -41,8 +41,8 @@ class DefaultController extends Controller
     public function additionAction($a, $b)
     {
         return [
-            'sum' => $this->get('esgi.computer')->addition($a,$b),
-            'power' => $this->get('esgi.computer')->power($a)
+            'sum' => $this->get('esgi.computer')->addition($a, $b),
+            'power' => $this->get('esgi.computer')->power($a),
         ];
     }
 
@@ -58,7 +58,7 @@ class DefaultController extends Controller
         $this->get('doctrine.orm.entity_manager')->persist($post);
         $this->get('doctrine.orm.entity_manager')->flush();
 
-        return new Response('post créé : id ' . $post->getId());
+        return new Response('post créé : id '.$post->getId());
     }
 
     /**
@@ -70,10 +70,10 @@ class DefaultController extends Controller
         $publishedPosts = $em->getRepository('ESGIBlogBundle:Post')->findPublished();
         $posts = $em->getRepository('ESGIBlogBundle:Post')->findAll();
 //        var_dump($publishedPosts);
-       
-        return $this->render("ESGIBlogBundle:Default:index.html.twig", array("posts"=>$posts));
+
+        return $this->render("ESGIBlogBundle:Default:index.html.twig", array("posts" => $posts));
     }
-    
+
     public function searchAction($term)
     {
         return $this->render("ESGIBlogBundle:Post:search.html.twig");

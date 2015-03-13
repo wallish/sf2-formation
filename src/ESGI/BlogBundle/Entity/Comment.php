@@ -5,7 +5,7 @@ namespace ESGI\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Comment
+ * Comment.
  *
  * @ORM\Table(name="comment")
  * @ORM\Entity
@@ -13,15 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Comment
 {
     /**
-    * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
-    * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
-    */
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+     */
     protected $post;
-    
+
     /**
-    * @ORM\ManyToOne(targetEntity="ESGI\UserBundle\Entity\User")
-    * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
-    */
+     * @ORM\ManyToOne(targetEntity="ESGI\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     */
     private $author;
 
     /**
@@ -47,11 +47,10 @@ class Comment
      */
     private $isPublished;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -59,9 +58,10 @@ class Comment
     }
 
     /**
-     * Set text
+     * Set text.
      *
      * @param string $text
+     *
      * @return Comment
      */
     public function setText($text)
@@ -72,9 +72,9 @@ class Comment
     }
 
     /**
-     * Get text
+     * Get text.
      *
-     * @return string 
+     * @return string
      */
     public function getText()
     {
@@ -82,9 +82,10 @@ class Comment
     }
 
     /**
-     * Set isPublished
+     * Set isPublished.
      *
      * @param boolean $isPublished
+     *
      * @return Comment
      */
     public function setIsPublished($isPublished)
@@ -95,9 +96,9 @@ class Comment
     }
 
     /**
-     * Get isPublished
+     * Get isPublished.
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsPublished()
     {
@@ -105,9 +106,10 @@ class Comment
     }
 
     /**
-     * Set post
+     * Set post.
      *
      * @param \ESGI\BlogBundle\Entity\Post $post
+     *
      * @return Comment
      */
     public function setPost(\ESGI\BlogBundle\Entity\Post $post = null)
@@ -118,9 +120,9 @@ class Comment
     }
 
     /**
-     * Get post
+     * Get post.
      *
-     * @return \ESGI\BlogBundle\Entity\Post 
+     * @return \ESGI\BlogBundle\Entity\Post
      */
     public function getPost()
     {
@@ -128,9 +130,10 @@ class Comment
     }
 
     /**
-     * Set author
+     * Set author.
      *
      * @param \ESGI\UserBundle\Entity\User $author
+     *
      * @return Comment
      */
     public function setAuthor(\ESGI\UserBundle\Entity\User $author = null)
@@ -141,9 +144,9 @@ class Comment
     }
 
     /**
-     * Get author
+     * Get author.
      *
-     * @return \ESGI\UserBundle\Entity\User 
+     * @return \ESGI\UserBundle\Entity\User
      */
     public function getAuthor()
     {

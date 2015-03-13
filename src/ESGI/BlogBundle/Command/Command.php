@@ -7,8 +7,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use ESGI\BlogBundle\Entity\User as User;
-
 class Command extends ContainerAwareCommand
 {
     protected function configure()
@@ -23,7 +21,6 @@ class Command extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         $em =  $this->getContainer()->get('doctrine');
         $name = $input->getArgument('filter');
         $count = $em->getRepository('ESGIBlogBundle:Post')->count($name);

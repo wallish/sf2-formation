@@ -1,7 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    
+
     <div class="content">
         <h1>Proposer un nouveau post</h1>
         {% for label, flashes in app.session.flashbag.all %}
@@ -22,7 +22,7 @@
                 <div>{{ form_widget(form.category, {'attr': {'class' :'form-control'}}) }}</div>
                 <p>
                     <input type="submit" value="Proposer" class="btn btn-primary btn-raised" style="float: right;"/>
-                </p> 
+                </p>
                 {{ form_rest(form) }}
             </form>
         </div>
