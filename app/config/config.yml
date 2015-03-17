@@ -153,3 +153,25 @@ nomaya_social:
         facebook:           "http://www.facebook.com/yann.chauvel"
         googleplus:         "https://plus.google.com/105931415830389032796"
     theme:                  'default' # optional
+
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app:
+            types:
+                post:
+                    mappings:
+                        title: ~
+                        body: ~
+                        slug: ~
+                    persistence:
+                        # the driver can be orm, mongodb or propel
+                        # listener and finder are not supported by
+                        # propel and should be removed
+                        driver: orm
+                        model: ESGI\BlogBundle\Entity\Post
+                        provider: ~
+                        listener:
+                            immediate: ~
+                        finder: ~

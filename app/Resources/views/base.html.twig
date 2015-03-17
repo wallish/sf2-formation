@@ -15,11 +15,19 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/js/ripples.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.js"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
         <script>
             $(document).ready(function(){
                 $.material.init();
                 $("select").dropdown();
             });
+
+            function search(){
+
+                var search = $("#search").val();
+                window.location.href = Routing.generate('post_search', { term: search });
+            }
         </script>
         <style type="text/css">
             .content {
@@ -43,21 +51,31 @@
           </div>
           <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-              
-              <li><a href="{{ path('propose') }}">Proposer<div class="ripple-wrapper"></div></a></li>
-              <li><a href="{{ path('post_list') }}">Liste<div class="ripple-wrapper"></div></a></li>
+              <li><a href="{{ path('propose') }}">Propose<div class="ripple-wrapper"></div></a></li>
+              <li><a href="{{ path('post_list') }}">List<div class="ripple-wrapper"></div></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                
+                <li><input class="form-control" name="search" id="search" placeholder="search"></input></li>
+         
+                <li><button  class="btn btn-default" data-ripple-color="#F0F0F0" onclick="search()">search</button></li>
+
+                <li></input></li>
                 {% if not app.user %}
-                    <li><a href="{{ path('fos_user_security_login') }}">Connxeion</a></li>
-                    <li><a href="{{ path('register') }}">Inscription</a></li>
+                    <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                    <li><a href="{{ path('register') }}">Register</a></li>
                 {% else %}
-                    <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
                 {% endif %}
             </ul>
           </div>
         </div>
             {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+
+
+
+        {% endblock %}
     </body>
 </html>
+

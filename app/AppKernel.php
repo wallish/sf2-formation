@@ -31,6 +31,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new ESGI\UserBundle\ESGIUserBundle(),
             new Nomaya\SocialBundle\NomayaSocialBundle(),
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

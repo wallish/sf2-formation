@@ -96,4 +96,36 @@ class PostController extends Controller
 
         return new Response($feed->render('rss')); // or 'atom'
     }
+
+    /**
+     * @Template()
+     */
+    public function searchAction($term)
+    {
+        $finder = $this->container->get('fos_elastica.index.app.post');
+
+        // Option 1. Returns all users who have example.net in any of their mapped fields
+        $results = $finder->search($term);
+        
+            // Option 2. Returns a set of hybrid results that contain all Elasticsearch results
+        // and their transformed counterparts. Each result is an instance of a HybridResult
+        //$results = $finder->findHybrid('example.net');
+
+        // Option 3a. Pagerfanta'd resultset
+        /** var Pagerfanta\Pagerfanta */
+        //$userPaginator = $results->findPaginated('bob');
+
+        /*foreach ($results->getResults() as $key => $value) {
+            $foo = $value->getData();
+            die(var_dump($foo));
+            # code...
+        }*/
+        
+        
+
+
+        return [
+            'result' => $results->getResults()
+        ];
+    }
 }

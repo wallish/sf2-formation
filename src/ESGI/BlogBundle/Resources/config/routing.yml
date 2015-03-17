@@ -32,3 +32,6 @@ comment_add:
 
 post_search:
     pattern: /post/search/{term}
+    defaults: { _controller: "ESGIBlogBundle:Post:search" }
+    options:
+        expose: true
